@@ -1,3 +1,3 @@
 export interface BackendErrors {
-    [key: string]: string;
+    [key: string]: string[];
 }

@@ -7,6 +7,11 @@ import { AuthState } from "../types/authState.interface";
 export const authFeatureSelector = (state: AppState): AuthState => state.auth;
 
 export const isSubmittingSelector = createSelector(
-    authFeatureSelector, 
+    authFeatureSelector,
     (authState: AuthState) => authState.isSubmitting
+);
+
+export const validationErrorsSelector = createSelector(
+    authFeatureSelector,
+    (authState: AuthState) => authState.validationErrors
 );

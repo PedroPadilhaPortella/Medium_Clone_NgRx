@@ -13,7 +13,7 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     register(user: RegisterRequest): Observable<CurrentUser> {
-        return this.http.post<AuthResponse>(`${this.url}user`, user)
+        return this.http.post<AuthResponse>(`${this.url}users`, user)
             .pipe(map(response => response.user));
     }
 }
