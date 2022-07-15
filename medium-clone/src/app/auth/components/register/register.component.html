@@ -21,7 +21,7 @@
               <input type="password" class="form-control form-control-lg" formControlName="password"
                 placeholder="Password">
             </fieldset>
-            <button [disabled]="form.invalid" class="btn btn-lg btn-primary pull-xs-right" type="submit">Sign up</button>
+            <button [disabled]="form.invalid || (isSubmitting$ | async)" class="btn btn-lg btn-primary pull-xs-right" type="submit">Sign up</button>
           </fieldset>
         </form>
       </div>
