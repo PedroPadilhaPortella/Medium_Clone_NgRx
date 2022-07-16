@@ -7,6 +7,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { PersistanceKey } from 'src/app/shared/types/persistanceKey';
 
 @Injectable()
 export class RegisterEffect {
@@ -23,7 +24,7 @@ export class RegisterEffect {
         switchMap(({ request }) => {
             return this.authService.register(request).pipe(
                 map((currentUser: CurrentUser) => {
-                    this.persistanceService.set('accessToken', currentUser.token);
+                    this.persistanceService.set(PersistanceKey.ACCESS_TOKEN, currentUser.token);
                     return registerSuccessAction({ currentUser })
                 }),
                 catchError((errorResponse: HttpErrorResponse) =>

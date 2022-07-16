@@ -1,19 +1,19 @@
-import { BackendErrors } from './../../types/backendErrors.interface';
-import { RegisterRequest } from './../../types/registerRequest.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/shared/types/appState.interface';
+import { loginAction } from '../../store/actions/login.action';
 import { isSubmittingSelector, validationErrorsSelector } from '../../store/selector';
-import { registerAction } from '../../store/actions/register.action';
+import { BackendErrors } from '../../types/backendErrors.interface';
+import { LoginRequest } from '../../types/loginRequest.interface';
 
 @Component({
-    selector: 'mc-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+  selector: 'mc-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class LoginComponent implements OnInit {
     form: FormGroup;
     isSubmitting$: Observable<boolean>;
     backendErrors$: Observable<BackendErrors | null>
@@ -35,10 +35,8 @@ export class RegisterComponent implements OnInit {
 
     createForm(): void {
         this.form = this.formBuilder.group({
-            // username: ['', [Validators.required]],
             // email: ['', [Validators.required, Validators.email]],
             // password: ['', [Validators.required]],
-            username: ['', []],
             email: ['', []],
             password: ['', []],
         });
@@ -46,8 +44,8 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         if (this.form.valid) {
-            const request: RegisterRequest = { user: this.form.value }
-            this.store.dispatch(registerAction({request}));
+            const request: LoginRequest = { user: this.form.value }
+            this.store.dispatch(loginAction({request}));
         }
     }
 }

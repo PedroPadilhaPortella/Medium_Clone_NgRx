@@ -1,4 +1,7 @@
-import { HttpClientModule } from '@angular/common/http';
+import { PersistanceService } from './shared/services/persistance.service';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from './../environments/environment.prod';
@@ -19,11 +22,15 @@ import { EffectsModule } from '@ngrx/effects';
         HttpClientModule,
         AppRoutingModule,
         AuthModule,
+        SharedModule,
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
         EffectsModule.forRoot([])
     ],
-    providers: [],
+    providers: [
+        PersistanceService, 
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
