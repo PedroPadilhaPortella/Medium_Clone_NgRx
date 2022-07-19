@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
+import { FeedModule } from './feed/feed.module';
 
 @NgModule({
     declarations: [
@@ -21,8 +22,9 @@ import { EffectsModule } from '@ngrx/effects';
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        AuthModule,
         SharedModule,
+        AuthModule,
+        FeedModule,
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
         EffectsModule.forRoot([])
