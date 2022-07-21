@@ -1,30 +1,20 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createSelector } from "@ngrx/store";
 import { AppState } from "src/app/shared/types/appState.interface";
-import { AuthState } from "../types/authState.interface";
+import { FeedState } from './../types/feedState.interface';
 
-export const authFeatureSelector = (state: AppState): AuthState => state.auth;
+export const feedFeatureSelector = (state: AppState): FeedState => state.feed;
 
-export const isSubmittingSelector = createSelector(
-    authFeatureSelector,
-    (authState: AuthState) => authState.isSubmitting
+export const isLoadingSelector = createSelector(
+    feedFeatureSelector,
+    (feedState: FeedState) => feedState.isLoading,
 );
 
-export const validationErrorsSelector = createSelector(
-    authFeatureSelector,
-    (authState: AuthState) => authState.validationErrors
+export const errorSelector = createSelector(
+    feedFeatureSelector,
+    (feedState: FeedState) => feedState.error,
 );
 
-export const isLoggedInSelector = createSelector(
-    authFeatureSelector,
-    (authState: AuthState) => authState.isLoggedIn
-);
-
-export const isAnonymousSelector = createSelector(
-    authFeatureSelector,
-    (authState: AuthState) => authState.isLoggedIn === false
-);
-
-export const currentUserSelector = createSelector(
-    authFeatureSelector,
-    (authState: AuthState) => authState.currentUser
+export const feedSelector = createSelector(
+    feedFeatureSelector,
+    (feedState: FeedState) => feedState.data,
 );

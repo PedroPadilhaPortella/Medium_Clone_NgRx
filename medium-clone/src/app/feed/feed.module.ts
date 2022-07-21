@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
+import { BannerComponent } from './components/banner/banner.component';
 
 const routes: Routes = [
     {
@@ -20,6 +21,7 @@ const routes: Routes = [
     declarations: [
         GlobalFeedComponent,
         FeedComponent,
+        BannerComponent,
     ],
     imports: [
         CommonModule,
@@ -32,6 +34,7 @@ const routes: Routes = [
     exports: [
         GlobalFeedComponent,
         FeedComponent,
+        BannerComponent,
     ]
 })
 export class FeedModule { }
