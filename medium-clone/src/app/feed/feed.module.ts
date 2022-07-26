@@ -1,14 +1,15 @@
-import { GetFeedEffect } from './store/effects/getFeed.effect';
-import { FeedComponent } from './components/feed/feed.component';
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { PopularTagsModule } from './../popular-tags/popular-tags.module';
 import { CommonModule } from '@angular/common';
-import { GlobalFeedComponent } from './components/global-feed/global-feed.component';
-import { SharedModule } from '../shared/shared.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../shared/shared.module';
 import { BannerComponent } from './components/banner/banner.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { GlobalFeedComponent } from './components/global-feed/global-feed.component';
+import { GetFeedEffect } from './store/effects/getFeed.effect';
+import { reducers } from './store/reducers';
 
 const routes: Routes = [
     {
@@ -26,8 +27,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         SharedModule,
+        PopularTagsModule,
         RouterModule.forChild(routes),
-        SharedModule,
         StoreModule.forFeature('feed', reducers),
         EffectsModule.forFeature([GetFeedEffect]),
     ],

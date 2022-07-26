@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EffectsModule } from '@ngrx/effects';
 import { FeedModule } from './feed/feed.module';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
     declarations: [
@@ -25,9 +26,10 @@ import { FeedModule } from './feed/feed.module';
         SharedModule,
         AuthModule,
         FeedModule,
-        StoreModule.forRoot({}),
+        StoreModule.forRoot({ router: routerReducer }),
+        StoreRouterConnectingModule.forRoot(),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-        EffectsModule.forRoot([])
+        EffectsModule.forRoot([]),
     ],
     providers: [
         PersistanceService, 
