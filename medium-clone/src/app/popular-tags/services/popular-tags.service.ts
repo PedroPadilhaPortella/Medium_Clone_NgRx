@@ -11,7 +11,7 @@ export class PopularTagsService {
     constructor(private http: HttpClient) { }
 
     getPopularTags(): Observable<PopularTag[]> {
-        return this.http.get(`${environment.baseUrl}/tags`)
+        return this.http.get(`${environment.baseUrl}tags`)
             .pipe(
                 map((response: PopularTagsResponse) => response.tags)
             );
