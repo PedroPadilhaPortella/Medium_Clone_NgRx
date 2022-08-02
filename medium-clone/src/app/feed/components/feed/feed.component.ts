@@ -3,7 +3,7 @@ import { environment } from './../../../../environments/environment';
 import { errorSelector, feedSelector, isLoadingSelector } from './../../store/selector';
 import { FeedResponse } from './../../types/feedResponse.interface';
 import { Observable, Subscription } from 'rxjs';
-import { getFeedAction } from './../../store/actions/getFeed';
+import { getFeedAction } from '../../store/actions/getFeed.action';
 import { select, Store } from '@ngrx/store';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { stringify, parseUrl } from 'query-string';

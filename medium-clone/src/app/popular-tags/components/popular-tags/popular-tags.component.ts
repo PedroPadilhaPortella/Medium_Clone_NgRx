@@ -1,6 +1,6 @@
 import { popularTagsSelector, isLoadingSelector, errorSelector } from './../../store/selector';
 import { Observable } from 'rxjs';
-import { getPopularTagsAction } from './../../store/actions/getPopularTags';
+import { getPopularTagsAction } from '../../store/actions/getPopularTags.action';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { PopularTag } from '../../types/popularTag.type';

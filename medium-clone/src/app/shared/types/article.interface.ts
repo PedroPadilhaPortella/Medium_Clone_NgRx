@@ -1,4 +1,5 @@
-import { Profile } from "./author.interface";
+import { PopularTag } from 'src/app/popular-tags/types/popularTag.type';
+import { Profile } from "../../feed/types/author.interface";
 
 export interface Article {
     title: string;
@@ -6,7 +7,7 @@ export interface Article {
     body: string;
     createdAt: string;
     updatedAt: string;
-    tagList: string[];
+    tagList: PopularTag[];
     description: string;
     author: Profile;
     favorite: boolean;

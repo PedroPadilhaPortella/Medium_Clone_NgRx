@@ -1,4 +1,4 @@
-import { FeedResponse } from './../../types/feedResponse.interface';
+import { FeedResponse } from '../../types/feedResponse.interface';
 import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '../actionTypes';
 

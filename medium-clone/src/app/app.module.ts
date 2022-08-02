@@ -1,19 +1,20 @@
-import { PersistanceService } from './shared/services/persistance.service';
-import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
-import { SharedModule } from './shared/shared.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from './../environments/environment.prod';
 import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { PersistanceService } from './shared/services/persistance.service';
+import { SharedModule } from './shared/shared.module';
 
+import { EffectsModule } from '@ngrx/effects';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EffectsModule } from '@ngrx/effects';
+import { ArticleModule } from './article/article.module';
 import { FeedModule } from './feed/feed.module';
-import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
         SharedModule,
         AuthModule,
         FeedModule,
+        ArticleModule,
         StoreModule.forRoot({ router: routerReducer }),
         StoreRouterConnectingModule.forRoot(),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

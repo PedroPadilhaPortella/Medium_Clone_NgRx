@@ -1,4 +1,4 @@
-import { PopularTag } from './../../types/popularTag.type';
+import { PopularTag } from '../../types/popularTag.type';
 
 import { createAction, props } from '@ngrx/store';
 import { ActionTypes } from '../actionTypes';

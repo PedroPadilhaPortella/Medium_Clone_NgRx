@@ -1,4 +1,4 @@
-import { getPopularTagsAction, getPopularTagsFailureAction, getPopularTagsSuccessAction } from './actions/getPopularTags';
+import { getPopularTagsAction, getPopularTagsFailureAction, getPopularTagsSuccessAction } from './actions/getPopularTags.action';
 import { Action, createReducer, on } from '@ngrx/store';
 import { PopularTagsState } from './../types/popularTagsState.interface';
 
