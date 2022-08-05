@@ -1,5 +1,5 @@
 import { CurrentUser } from './../../../shared/types/currentUser.interface';
-import { currentUserSelector } from './../../../auth/store/selector';
+import { currentUserSelector } from '../../../auth/store/selectors/authSelector';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';

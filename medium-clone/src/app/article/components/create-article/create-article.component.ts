@@ -2,7 +2,7 @@ import { createArticleAction } from './../../store/actions/createArticle.action'
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { BackendErrors } from 'src/app/auth/types/backendErrors.interface';
+import { BackendErrors } from 'src/app/shared/types/backendErrors.interface';
 import { ArticleInput } from './../../../shared/types/articleInput.interface';
 import { isSubmittingSelector, validationErrorsSelector } from './../../store/selectors/createArticleSelector';
 

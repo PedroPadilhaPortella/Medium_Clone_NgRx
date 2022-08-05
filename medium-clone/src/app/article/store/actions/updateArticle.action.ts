@@ -1,4 +1,4 @@
-import { BackendErrors } from '../../../auth/types/backendErrors.interface';
+import { BackendErrors } from '../../../shared/types/backendErrors.interface';
 import { Article } from 'src/app/shared/types/article.interface';
 import { ArticleInput } from '../../../shared/types/articleInput.interface';
 import { createAction, props } from '@ngrx/store';

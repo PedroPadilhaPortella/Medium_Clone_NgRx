@@ -1,9 +1,7 @@
-import { BackendErrors } from 'src/app/auth/types/backendErrors.interface';
 import { Article } from 'src/app/shared/types/article.interface';
+import { BaseState } from 'src/app/shared/types/state.interface';
 
-export interface EditArticleState {
+export interface EditArticleState extends BaseState {
     article: Article | null;
     isLoading: boolean;
-    isSubmitting: boolean;
-    validationErrors: BackendErrors | null;
 }

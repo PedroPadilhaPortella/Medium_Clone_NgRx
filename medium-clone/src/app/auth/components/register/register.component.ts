@@ -1,11 +1,11 @@
-import { BackendErrors } from './../../types/backendErrors.interface';
+import { BackendErrors } from '../../../shared/types/backendErrors.interface';
 import { RegisterRequest } from './../../types/registerRequest.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/shared/types/appState.interface';
-import { isSubmittingSelector, validationErrorsSelector } from '../../store/selector';
+import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors/authSelector';
 import { registerAction } from '../../store/actions/register.action';
 
 @Component({

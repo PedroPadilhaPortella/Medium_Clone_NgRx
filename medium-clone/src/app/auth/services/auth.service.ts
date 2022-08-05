@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { CurrentUser } from 'src/app/shared/types/currentUser.interface';
+import { CurrentUserInput } from 'src/app/shared/types/currentUserInput.interface';
 import { environment } from './../../../environments/environment';
 import { AuthResponse } from './../types/authResponse.interface';
 import { LoginRequest } from './../types/loginRequest.interface';
@@ -25,6 +26,11 @@ export class AuthService {
 
     getCurrentUser(): Observable<CurrentUser> {
         return this.http.get<AuthResponse>(`${this.url}user`)
+            .pipe(map(response => response.user));
+    }
+
+    updateCurrentUser(user: CurrentUserInput): Observable<CurrentUser> {
+        return this.http.put<AuthResponse>(`${this.url}user`, user)
             .pipe(map(response => response.user));
     }
 }

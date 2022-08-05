@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { BackendErrors } from 'src/app/auth/types/backendErrors.interface';
+import { BackendErrors } from 'src/app/shared/types/backendErrors.interface';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ArticleInput } from '../../types/articleInput.interface';
 

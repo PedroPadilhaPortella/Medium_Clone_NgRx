@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map, Observable } from 'rxjs';
-import { BackendErrors } from 'src/app/auth/types/backendErrors.interface';
+import { BackendErrors } from 'src/app/shared/types/backendErrors.interface';
 import { ArticleInput } from 'src/app/shared/types/articleInput.interface';
 import { updateArticleAction } from '../../store/actions/updateArticle.action';
 import { articleSelector, isLoadingSelector, isSubmittingSelector, validationErrorsSelector } from '../../store/selectors/editArticleSelector';

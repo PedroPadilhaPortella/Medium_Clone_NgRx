@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -11,7 +11,10 @@ import { AuthService } from './services/auth.service';
 import { GetCurrentUserEffect } from './store/effects/getCurrentUser.effect';
 import { LoginEffect } from './store/effects/login.effect';
 import { RegisterEffect } from './store/effects/register.effect';
-import { reducers } from './store/reducers';
+import { UpdateCurrentUserEffect } from './store/effects/updateCurrentUser.effect';
+import { authReducers } from './store/reducers/authReducers';
+import { SettingsComponent } from './components/settings/settings.component';
+import { settingsReducers } from './store/reducers/settingsReducers';
 
 const routes: Routes = [
     {
@@ -21,28 +24,41 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
+    },
+    {
+        path: 'settings',
+        component: SettingsComponent,
     }
 ];
 
 @NgModule({
-  declarations: [
-    RegisterComponent,
-    LoginComponent,
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    SharedModule,
-    RouterModule.forChild(routes),
-    StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
-  ],
-  exports: [
-    RegisterComponent,
-    LoginComponent,
-  ],
-  providers: [
-    AuthService,
-  ]
+    declarations: [
+        RegisterComponent,
+        LoginComponent,
+        SettingsComponent,
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        RouterModule.forChild(routes),
+        StoreModule.forFeature('auth', authReducers),
+        StoreModule.forFeature('settings', settingsReducers),
+        EffectsModule.forFeature([
+            RegisterEffect,
+            LoginEffect,
+            GetCurrentUserEffect,
+            UpdateCurrentUserEffect
+        ]),
+    ],
+    exports: [
+        RegisterComponent,
+        LoginComponent,
+        SettingsComponent,
+    ],
+    providers: [
+        AuthService,
+    ]
 })
 export class AuthModule { }

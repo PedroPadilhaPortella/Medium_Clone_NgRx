@@ -1,4 +1,4 @@
-import { BackendErrors } from '../../types/backendErrors.interface';
+import { BackendErrors } from '../../../shared/types/backendErrors.interface';
 import { CurrentUser } from './../../../shared/types/currentUser.interface';
 import { RegisterRequest } from '../../types/registerRequest.interface';
 import { createAction, props } from '@ngrx/store';

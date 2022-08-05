@@ -1,4 +1,4 @@
-import { isLoggedInSelector, isAnonymousSelector, currentUserSelector } from './../../../auth/store/selector';
+import { isLoggedInSelector, isAnonymousSelector, currentUserSelector } from '../../../auth/store/selectors/authSelector';
 import { CurrentUser } from './../../types/currentUser.interface';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
