@@ -1,3 +1,4 @@
+import { ArticleInput } from './../../shared/types/articleInput.interface';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
@@ -14,6 +15,11 @@ export class ArticleService {
     getArticle(slug: string): Observable<Article> {
         return this.http.get<ArticleResponse>(`${this.baseUrl}articles/${slug}`)
         .pipe(map((response: ArticleResponse) => response.article));
+    }
+
+    createArticle(article: ArticleInput): Observable<Article> {
+        return this.http.post<ArticleResponse>(`${this.baseUrl}articles`, {article: article})
+        .pipe(map((response) => response.article));
     }
     
     deleteArticle(slug: string): Observable<{}> {

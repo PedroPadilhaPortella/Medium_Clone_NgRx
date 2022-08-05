@@ -1,6 +1,6 @@
 <div class="article-page">
     <div class="banner">
-        <div class="container" *ngIf="article">
+        <div class="container page" *ngIf="article">
             <h1>{{ article.title }}</h1>
             <div class="article-meta">
                 <a [routerLink]="['/profiles', article.author.username]">

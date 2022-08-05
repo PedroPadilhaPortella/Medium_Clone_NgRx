@@ -2,19 +2,19 @@ import { createSelector } from "@ngrx/store";
 import { ArticleState } from 'src/app/article/types/articleState.interface';
 import { AppState } from "src/app/shared/types/appState.interface";
 
-export const articleFeatureSelector = (state: AppState): ArticleState => state.article;
+export const getArticleFeatureSelector = (state: AppState): ArticleState => state.article;
 
 export const isLoadingSelector = createSelector(
-    articleFeatureSelector,
+    getArticleFeatureSelector,
     (articleState: ArticleState) => articleState.isLoading,
 );
 
 export const errorSelector = createSelector(
-    articleFeatureSelector,
+    getArticleFeatureSelector,
     (articleState: ArticleState) => articleState.error,
 );
 
 export const articleSelector = createSelector(
-    articleFeatureSelector,
+    getArticleFeatureSelector,
     (articleState: ArticleState) => articleState.data,
 );

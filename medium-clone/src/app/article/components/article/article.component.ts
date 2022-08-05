@@ -4,10 +4,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Subscription, Observable, combineLatest, map } from 'rxjs';
-import { isLoadingSelector, errorSelector } from '../../store/selector';
+import { isLoadingSelector, errorSelector } from '../../store/selectors/getArticleSelector';
 import { Article } from './../../../shared/types/article.interface';
 import { getArticleAction } from '../../store/actions/getArticle.action';
-import { articleSelector } from './../../store/selector';
+import { articleSelector } from '../../store/selectors/getArticleSelector';
 import { deleteArticleAction } from '../../store/actions/deleteArticle.action';
 
 @Component({

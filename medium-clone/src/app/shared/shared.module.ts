@@ -9,11 +9,15 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { PersistanceService } from './services/persistance.service';
 import { UtilService } from './services/util.service';
+import { ArticleFormComponent } from './components/article-form/article-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         BackendErrorMessagesComponent,
@@ -22,6 +26,7 @@ import { UtilService } from './services/util.service';
         LoadingComponent,
         PaginationComponent,
         TagListComponent,
+        ArticleFormComponent,
     ],
     exports: [
         BackendErrorMessagesComponent,
@@ -30,6 +35,7 @@ import { UtilService } from './services/util.service';
         LoadingComponent,
         PaginationComponent,
         TagListComponent,
+        ArticleFormComponent,
     ],
     providers: [
         PersistanceService,

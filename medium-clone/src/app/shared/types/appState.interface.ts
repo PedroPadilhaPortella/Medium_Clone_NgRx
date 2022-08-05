@@ -2,10 +2,12 @@ import { PopularTagsState } from './../../popular-tags/types/popularTagsState.in
 import { AuthState } from "src/app/auth/types/authState.interface";
 import { FeedState } from './../../feed/types/feedState.interface';
 import { ArticleState } from 'src/app/article/types/articleState.interface';
+import { CreateArticleState } from 'src/app/article/types/createArticleState.interface';
 
 export interface AppState {
     auth: AuthState;
     feed: FeedState;
     article: ArticleState;
+    createArticle: CreateArticleState;
     popularTags: PopularTagsState;
 } 
