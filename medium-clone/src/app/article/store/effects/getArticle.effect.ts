@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap } from 'rxjs';
-import { Article } from './../../../shared/types/article.interface';
-import { ArticleService } from './../../services/article.service';
+import { ArticleService } from "../../services/article.service";
 import { getArticleAction, getArticleFailureAction, getArticleSuccessAction } from '../actions/getArticle.action';
+import { Article } from './../../../shared/types/article.interface';
 
 @Injectable()
 export class GetArticleEffect {

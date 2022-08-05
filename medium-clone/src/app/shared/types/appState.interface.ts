@@ -1,3 +1,4 @@
+import { EditArticleState } from './../../article/types/editArticleState.interface';
 import { PopularTagsState } from './../../popular-tags/types/popularTagsState.interface';
 import { AuthState } from "src/app/auth/types/authState.interface";
 import { FeedState } from './../../feed/types/feedState.interface';
@@ -9,5 +10,6 @@ export interface AppState {
     feed: FeedState;
     article: ArticleState;
     createArticle: CreateArticleState;
+    editArticle: EditArticleState;
     popularTags: PopularTagsState;
 } 

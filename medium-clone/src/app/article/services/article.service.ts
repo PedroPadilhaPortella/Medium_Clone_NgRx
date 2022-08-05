@@ -21,6 +21,11 @@ export class ArticleService {
         return this.http.post<ArticleResponse>(`${this.baseUrl}articles`, {article: article})
         .pipe(map((response) => response.article));
     }
+
+    updateArticle(slug: string, article: ArticleInput): Observable<Article> {
+        return this.http.put<ArticleResponse>(`${this.baseUrl}articles/${slug}`, {article: article})
+        .pipe(map((response) => response.article));
+    }
     
     deleteArticle(slug: string): Observable<{}> {
         return this.http.delete(`${this.baseUrl}articles/${slug}`);

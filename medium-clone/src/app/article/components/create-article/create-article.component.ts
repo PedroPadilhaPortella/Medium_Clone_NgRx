@@ -25,6 +25,10 @@ export class CreateArticleComponent implements OnInit {
     constructor(private store: Store) { }
 
     ngOnInit(): void {
+        this.initializeValues();
+    }
+    
+    initializeValues(): void {
         this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
         this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
     }

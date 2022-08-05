@@ -25,8 +25,6 @@ const getArticleReducer = createReducer(
         isLoading: false,
     })),
 
-
-
     on(routerNavigationAction, (): ArticleState => ({
         ...initialState
     })),

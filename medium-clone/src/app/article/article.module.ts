@@ -11,13 +11,19 @@ import { ArticleService } from './services/article.service';
 import { CreateArticleEffect } from './store/effects/createArticle.effect';
 import { DeleteArticleEffect } from './store/effects/deleteArticle.effect';
 import { GetArticleEffect } from './store/effects/getArticle.effect';
+import { UpdateArticleEffect } from './store/effects/updateArticle.effect';
 import { createArticleReducers } from './store/reducers/createArticleReducers';
 import { getArticlesReducers } from './store/reducers/getArticleReducers';
+import { editArticleReducers } from './store/reducers/updateArticleReducers';
 
 const routes: Routes = [
     {
         path: 'articles/new',
         component: CreateArticleComponent
+    },
+    {
+        path: 'articles/:slug/edit',
+        component: EditArticleComponent,
     },
     {
         path: 'articles/:slug',
@@ -37,7 +43,13 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         StoreModule.forFeature('article', getArticlesReducers),
         StoreModule.forFeature('createArticle', createArticleReducers),
-        EffectsModule.forFeature([GetArticleEffect, CreateArticleEffect, DeleteArticleEffect]),
+        StoreModule.forFeature('editArticle', editArticleReducers),
+        EffectsModule.forFeature([
+            GetArticleEffect, 
+            CreateArticleEffect, 
+            UpdateArticleEffect, 
+            DeleteArticleEffect
+        ]),
     ],
     exports: [
         ArticleComponent,
