@@ -15,6 +15,7 @@ import { UpdateCurrentUserEffect } from './store/effects/updateCurrentUser.effec
 import { authReducers } from './store/reducers/authReducers';
 import { SettingsComponent } from './components/settings/settings.component';
 import { settingsReducers } from './store/reducers/settingsReducers';
+import { LogoutEffect } from './store/effects/logout.effect';
 
 const routes: Routes = [
     {
@@ -39,8 +40,8 @@ const routes: Routes = [
     ],
     imports: [
         CommonModule,
-        ReactiveFormsModule,
         FormsModule,
+        ReactiveFormsModule,
         SharedModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature('auth', authReducers),
@@ -49,7 +50,8 @@ const routes: Routes = [
             RegisterEffect,
             LoginEffect,
             GetCurrentUserEffect,
-            UpdateCurrentUserEffect
+            UpdateCurrentUserEffect,
+            LogoutEffect,
         ]),
     ],
     exports: [

@@ -30,7 +30,7 @@ export class AuthService {
     }
 
     updateCurrentUser(user: CurrentUserInput): Observable<CurrentUser> {
-        return this.http.put<AuthResponse>(`${this.url}user`, user)
+        return this.http.put<AuthResponse>(`${this.url}user`, { user: user })
             .pipe(map(response => response.user));
     }
 }
