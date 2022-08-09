@@ -1,4 +1,4 @@
-<button (click)="handleLike()" [ngClass]="{ 
+<button *ngIf="(isLoggedIn$ | async)" (click)="handleLike()" [ngClass]="{ 
     'btn': true, 
     'btn-sm': true, 
     'btn-primary': isFavorited, 

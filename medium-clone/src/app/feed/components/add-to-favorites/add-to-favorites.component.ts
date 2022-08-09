@@ -1,7 +1,9 @@
-import { addFavoriteAction } from './../../store/actions/addFavorite.action';
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { FavoriteService } from '../../services/favorite.service';
+import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { isLoggedInSelector } from 'src/app/auth/store/selectors/authSelector';
+import { addFavoriteAction } from './../../store/actions/addFavorite.action';
 
 @Component({
     selector: 'mc-add-to-favorites',
@@ -13,26 +15,38 @@ export class AddToFavoritesComponent implements OnInit {
     @Input('isFavorited') isFavoritedProps: boolean;
     @Input('slug') slugProps: string;
     @Input('count') countProps: number;
+    isLoggedIn$: Observable<boolean>;
 
     favoritesCounts: number;
     isFavorited: boolean;
 
-    constructor(private store: Store) { }
+    constructor(private store: Store, private router: Router) { }
 
     ngOnInit(): void {
+        this.initializeValues();
+    }
+
+    initializeValues(): void {
+        this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
         this.isFavorited = this.isFavoritedProps;
         this.favoritesCounts = this.countProps;
     }
 
     handleLike(): void {
-        this.store.dispatch(addFavoriteAction({ isFavorited: this.isFavorited, slug: this.slugProps }));
+        this.isLoggedIn$.subscribe((isLoggedIn) => {
+            if (!isLoggedIn) {
+                this.router.navigateByUrl('login');
+            }
 
-        if (this.isFavorited) {
-            this.favoritesCounts--;
-        } else {
-            this.favoritesCounts++;
-        }
-        this.isFavorited = !this.isFavorited;
+            this.store.dispatch(addFavoriteAction({ isFavorited: this.isFavorited, slug: this.slugProps }));
+
+            if (this.isFavorited) {
+                this.favoritesCounts--;
+            } else {
+                this.favoritesCounts++;
+            }
+            this.isFavorited = !this.isFavorited;
+        });
     }
 
 }
