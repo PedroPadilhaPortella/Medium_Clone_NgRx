@@ -10,6 +10,6 @@ export interface Article {
     tagList: PopularTag[];
     description: string;
     author: Profile;
-    favorite: boolean;
+    favorited: boolean;
     favoritesCount: number;
 }

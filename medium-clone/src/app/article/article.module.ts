@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,8 +7,10 @@ import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
 import { ArticleComponent } from './components/article/article.component';
 import { CreateArticleComponent } from './components/create-article/create-article.component';
+import { AddToFavoritesComponent } from '../feed/components/add-to-favorites/add-to-favorites.component';
 import { EditArticleComponent } from './components/edit-article/edit-article.component';
 import { ArticleService } from './services/article.service';
+import { FavoriteService } from '../feed/services/favorite.service';
 import { CreateArticleEffect } from './store/effects/createArticle.effect';
 import { DeleteArticleEffect } from './store/effects/deleteArticle.effect';
 import { GetArticleEffect } from './store/effects/getArticle.effect';
@@ -40,14 +43,16 @@ const routes: Routes = [
     imports: [
         CommonModule,
         SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature('article', getArticlesReducers),
         StoreModule.forFeature('createArticle', createArticleReducers),
         StoreModule.forFeature('editArticle', editArticleReducers),
         EffectsModule.forFeature([
-            GetArticleEffect, 
-            CreateArticleEffect, 
-            UpdateArticleEffect, 
+            GetArticleEffect,
+            CreateArticleEffect,
+            UpdateArticleEffect,
             DeleteArticleEffect
         ]),
     ],
@@ -56,6 +61,8 @@ const routes: Routes = [
         CreateArticleComponent,
         EditArticleComponent,
     ],
-    providers: [ArticleService]
+    providers: [
+        ArticleService,
+    ]
 })
 export class ArticleModule { }

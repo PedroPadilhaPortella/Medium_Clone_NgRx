@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { FeedResponse } from '../types/feedResponse.interface';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class FeedService {
     baseUrl = environment.baseUrl;
 

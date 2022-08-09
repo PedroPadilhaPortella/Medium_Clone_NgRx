@@ -13,6 +13,10 @@ import { GetFeedEffect } from './store/effects/getFeed.effect';
 import { reducers } from './store/reducers';
 import { FeedTogglerComponent } from './components/feed-toggler/feed-toggler.component';
 import { TagFeedComponent } from './components/tag-feed/tag-feed.component';
+import { FeedService } from './services/feed.service';
+import { FavoriteService } from './services/favorite.service';
+import { AddToFavoritesComponent } from './components/add-to-favorites/add-to-favorites.component';
+import { AddFavoriteEffect } from './store/effects/addFavorite.effect';
 
 const routes: Routes = [
     {
@@ -37,6 +41,7 @@ const routes: Routes = [
         BannerComponent,
         FeedTogglerComponent,
         TagFeedComponent,
+        AddToFavoritesComponent,
     ],
     imports: [
         CommonModule,
@@ -44,7 +49,7 @@ const routes: Routes = [
         PopularTagsModule,
         RouterModule.forChild(routes),
         StoreModule.forFeature('feed', reducers),
-        EffectsModule.forFeature([GetFeedEffect]),
+        EffectsModule.forFeature([GetFeedEffect, AddFavoriteEffect]),
     ],
     exports: [
         GlobalFeedComponent,
@@ -53,6 +58,11 @@ const routes: Routes = [
         BannerComponent,
         FeedTogglerComponent,
         TagFeedComponent,
+        AddToFavoritesComponent,
+    ],
+    providers: [
+        FeedService,
+        FavoriteService,
     ]
 })
 export class FeedModule { }
