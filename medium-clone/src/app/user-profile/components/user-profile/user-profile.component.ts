@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, filter, map, Observable, Subscription } from 'rxjs';
 import { currentUserSelector } from '../../../auth/store/selectors/authSelector';
@@ -20,7 +20,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     error$: Observable<string | null>;
     userProfileSubscription: Subscription;
     isCurrentUserProfile$: Observable<boolean>;
-    apiUrl: string;
     slug: string;
 
     constructor(
@@ -32,39 +31,41 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.initializeValues();
         this.initializeListeners();
-        this.fetchData();
     }
 
     initializeValues(): void {
-        const isFavorites = this.router.url.includes('favorites');
         this.slug = this.route.snapshot.paramMap.get('slug');
-
         this.isLoading$ = this.store.pipe(select(isLoadingSelector));
         this.error$ = this.store.pipe(select(errorSelector));
-
-        this.apiUrl = isFavorites
-            ? `/articles?favorited=${this.slug}`
-            : `/articles?author=${this.slug}`;
 
         this.isCurrentUserProfile$ = combineLatest(
             this.store.pipe(select(currentUserSelector)),
             this.store.pipe(select(userProfileSelector))
         ).pipe(
-            map(([currentUser, userProfile]: [ CurrentUser | null, UserProfile | null ]) => {
-                    return currentUser.username === userProfile.username
-                }
-            )
-        )
+            map(([currentUser, userProfile]: [CurrentUser | null, UserProfile | null]) => {
+                return currentUser.username === userProfile.username
+            }),
+        );
+    }
+
+    getApiUrl(): string {
+        const isFavorites = this.router.url.includes('favorites');
+        return isFavorites ? `/articles?favorited=${this.slug}` : `/articles?author=${this.slug}`;
     }
 
     initializeListeners() {
         this.userProfileSubscription = this.store.pipe(select(userProfileSelector), filter((Boolean)))
             .subscribe((userProfile) => {
                 this.userProfile = userProfile;
-            })
+            });
+
+        this.route.params.subscribe((params: Params) => {
+            this.slug = params['slug'];
+            this.fetchUserProfile();
+        });
     }
 
-    fetchData(): void {
+    fetchUserProfile(): void {
         this.store.dispatch(getUserProfileAction({ slug: this.slug }));
     }
 

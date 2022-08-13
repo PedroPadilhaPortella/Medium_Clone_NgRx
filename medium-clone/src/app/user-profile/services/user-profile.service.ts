@@ -12,7 +12,17 @@ export class UserProfileService {
     constructor(private http: HttpClient) { }
 
     getUserProfile(slug: string): Observable<UserProfile> {
-       return this.http.get<GetUserProfileResponse>(`${this.url}profiles/${slug}`)
+        return this.http.get<GetUserProfileResponse>(`${this.url}profiles/${slug}`)
+            .pipe(map(response => response.profile));
+    }
+
+    followUser(slug: string): Observable<UserProfile> {
+        return this.http.post<GetUserProfileResponse>(`${this.url}profiles/${slug}/follow`, {})
+            .pipe(map(response => response.profile));
+    }
+
+    unfollowUser(slug: string): Observable<UserProfile> {
+        return this.http.delete<GetUserProfileResponse>(`${this.url}profiles/${slug}/follow`)
             .pipe(map(response => response.profile));
     }
 }

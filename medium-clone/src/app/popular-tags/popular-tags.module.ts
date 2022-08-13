@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PopularTagsComponent } from './components/popular-tags/popular-tags.component';
 import { GetPopularTagsEffect } from './store/effects/getPopularTags.effect';
 import { reducers } from './store/reducers';
+import { ReducersEnum } from '../shared/enums/reducers.enum';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,7 @@ import { reducers } from './store/reducers';
         CommonModule,
         SharedModule,
         RouterModule,
-        StoreModule.forFeature('popularTags', reducers),
+        StoreModule.forFeature(ReducersEnum.POPULAR_TAGS, reducers),
         EffectsModule.forFeature([GetPopularTagsEffect]),
     ],
     providers: [

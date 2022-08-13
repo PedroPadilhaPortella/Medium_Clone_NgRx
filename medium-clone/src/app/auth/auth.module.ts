@@ -16,6 +16,7 @@ import { authReducers } from './store/reducers/authReducers';
 import { SettingsComponent } from './components/settings/settings.component';
 import { settingsReducers } from './store/reducers/settingsReducers';
 import { LogoutEffect } from './store/effects/logout.effect';
+import { ReducersEnum } from '../shared/enums/reducers.enum';
 
 const routes: Routes = [
     {
@@ -44,8 +45,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         SharedModule,
         RouterModule.forChild(routes),
-        StoreModule.forFeature('auth', authReducers),
-        StoreModule.forFeature('settings', settingsReducers),
+        StoreModule.forFeature(ReducersEnum.AUTH, authReducers),
+        StoreModule.forFeature(ReducersEnum.SETTINGS, settingsReducers),
         EffectsModule.forFeature([
             RegisterEffect,
             LoginEffect,

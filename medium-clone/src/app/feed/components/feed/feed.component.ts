@@ -5,7 +5,7 @@ import { FeedResponse } from './../../types/feedResponse.interface';
 import { Observable, Subscription } from 'rxjs';
 import { getFeedAction } from '../../store/actions/getFeed.action';
 import { select, Store } from '@ngrx/store';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { stringify, parseUrl } from 'query-string';
 
 @Component({
@@ -13,7 +13,7 @@ import { stringify, parseUrl } from 'query-string';
     templateUrl: './feed.component.html',
     styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit, OnDestroy {
+export class FeedComponent implements OnInit, OnDestroy, OnChanges {
     @Input('url') apiUrlProps: string
 
     feed$: Observable<FeedResponse | null>
@@ -35,8 +35,13 @@ export class FeedComponent implements OnInit, OnDestroy {
         this.initializeListeners()
     }
 
-    ngOnDestroy(): void {
-        this.queryParamsSubscription.unsubscribe()
+    ngOnChanges(changes: SimpleChanges): void {
+        const isApiChanged = !changes['apiUrlProps'].firstChange
+            && changes['apiUrlProps'].currentValue !== changes['apiUrlProps'].previousValue;
+
+        if (isApiChanged) {
+            this.fetchFeed();
+        }
     }
 
     initializeListeners(): void {
@@ -65,5 +70,9 @@ export class FeedComponent implements OnInit, OnDestroy {
         })
         const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`
         this.store.dispatch(getFeedAction({ url: apiUrlWithParams }))
+    }
+
+    ngOnDestroy(): void {
+        this.queryParamsSubscription.unsubscribe()
     }
 }

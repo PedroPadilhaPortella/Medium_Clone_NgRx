@@ -1,3 +1,4 @@
+import { ReducersEnum } from './../shared/enums/reducers.enum';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -46,9 +47,9 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        StoreModule.forFeature('article', getArticlesReducers),
-        StoreModule.forFeature('createArticle', createArticleReducers),
-        StoreModule.forFeature('editArticle', editArticleReducers),
+        StoreModule.forFeature(ReducersEnum.ARTICLE, getArticlesReducers),
+        StoreModule.forFeature(ReducersEnum.CREATE_ARTICLE, createArticleReducers),
+        StoreModule.forFeature(ReducersEnum.EDIT_ARTICLE, editArticleReducers),
         EffectsModule.forFeature([
             GetArticleEffect,
             CreateArticleEffect,

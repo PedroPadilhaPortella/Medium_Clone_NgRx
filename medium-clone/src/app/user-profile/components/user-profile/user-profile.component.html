@@ -7,7 +7,13 @@
           <h4>{{ userProfile.username }}</h4>
           <p>{{ userProfile.bio }}</p>
           <div>
-            FOLLOW USER BUTTON
+            <mc-follow-button *ngIf="!(isCurrentUserProfile$ | async)" [user]="userProfile" [slug]="slug">
+            </mc-follow-button>
+            <a *ngIf="(isCurrentUserProfile$ | async)" class="btn btn-sm btn-outline-secondary action-btn"
+              [routerLink]="['/settings']">
+              <i class="ion-gear-a"></i>
+              Edit Profile Settings
+            </a>
           </div>
         </div>
       </div>
@@ -33,6 +39,7 @@
             </li>
           </ul>
         </div>
+        <mc-feed [url]="getApiUrl()"></mc-feed>
       </div>
     </div>
   </div>

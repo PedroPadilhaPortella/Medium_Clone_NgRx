@@ -1,13 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../shared/shared.module';
+import { FeedModule } from './../feed/feed.module';
+import { ReducersEnum } from './../shared/enums/reducers.enum';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserProfileService } from './services/user-profile.service';
-import { EffectsModule } from '@ngrx/effects';
 import { GetUserProfileEffect } from './store/effects/getUserProfile.effect';
-import { StoreModule } from '@ngrx/store';
 import { userProfileReducers } from './store/reducers';
-import { SharedModule } from '../shared/shared.module';
+import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 
 const routes: Routes = [
     {
@@ -15,7 +18,7 @@ const routes: Routes = [
         component: UserProfileComponent,
     },
     {
-        path: 'profiles/:slug/favorited',
+        path: 'profiles/:slug/favorites',
         component: UserProfileComponent,
     },
 ];
@@ -23,12 +26,14 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         UserProfileComponent,
+        FollowButtonComponent,
     ],
     imports: [
         CommonModule,
         SharedModule,
+        FeedModule,
         RouterModule.forChild(routes),
-        StoreModule.forFeature('user-profile', userProfileReducers),
+        StoreModule.forFeature(ReducersEnum.USER_PROFILE, userProfileReducers),
         EffectsModule.forFeature([GetUserProfileEffect]),
     ],
     exports: [

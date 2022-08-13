@@ -17,6 +17,7 @@ import { FeedService } from './services/feed.service';
 import { FavoriteService } from './services/favorite.service';
 import { AddToFavoritesComponent } from './components/add-to-favorites/add-to-favorites.component';
 import { AddFavoriteEffect } from './store/effects/addFavorite.effect';
+import { ReducersEnum } from '../shared/enums/reducers.enum';
 
 const routes: Routes = [
     {
@@ -48,7 +49,7 @@ const routes: Routes = [
         SharedModule,
         PopularTagsModule,
         RouterModule.forChild(routes),
-        StoreModule.forFeature('feed', reducers),
+        StoreModule.forFeature(ReducersEnum.FEED, reducers),
         EffectsModule.forFeature([GetFeedEffect, AddFavoriteEffect]),
     ],
     exports: [
