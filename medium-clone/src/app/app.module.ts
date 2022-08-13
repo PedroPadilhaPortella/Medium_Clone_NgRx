@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { PersistanceService } from './shared/services/persistance.service';
 import { SharedModule } from './shared/shared.module';
+import { UserProfileModule } from './user-profile/user-profile.module';
 
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -28,6 +29,7 @@ import { FeedModule } from './feed/feed.module';
         AuthModule,
         FeedModule,
         ArticleModule,
+        UserProfileModule,
         StoreModule.forRoot({ router: routerReducer }),
         StoreRouterConnectingModule.forRoot(),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

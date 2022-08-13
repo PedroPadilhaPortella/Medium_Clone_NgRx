@@ -39,10 +39,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     initializeListeners(): void {
-        this.currentUserSubscription = this.store.pipe(select(currentUserSelector), filter((Boolean))).subscribe((user: CurrentUser) => {
-            this.currentUser = user;
-            this.initializeForm();
-        });
+        this.currentUserSubscription = this.store.pipe(select(currentUserSelector), filter((Boolean)))
+            .subscribe((user: CurrentUser) => {
+                this.currentUser = user;
+                this.initializeForm();
+            });
     }
 
     initializeForm(): void {
