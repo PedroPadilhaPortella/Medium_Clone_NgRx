@@ -11,6 +11,7 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { PersistanceService } from './services/persistance.service';
 import { UtilService } from './services/util.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { UtilService } from './services/util.service';
         PaginationComponent,
         TagListComponent,
         ArticleFormComponent,
+        FooterComponent,
     ],
     exports: [
         BackendErrorMessagesComponent,
@@ -36,6 +38,7 @@ import { UtilService } from './services/util.service';
         PaginationComponent,
         TagListComponent,
         ArticleFormComponent,
+        FooterComponent,
     ],
     providers: [
         PersistanceService,
