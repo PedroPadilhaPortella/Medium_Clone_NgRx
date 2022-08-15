@@ -13,5 +13,5 @@ export const getArticleSuccessAction = createAction(
 );
 
 export const getArticleFailureAction = createAction(
-    ActionTypes.GET_ARTICLE_SUCCESS,
+    ActionTypes.GET_ARTICLE_FAILURE,
 );

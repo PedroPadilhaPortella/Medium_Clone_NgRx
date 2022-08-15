@@ -19,6 +19,12 @@ import { UpdateArticleEffect } from './store/effects/updateArticle.effect';
 import { createArticleReducers } from './store/reducers/createArticleReducers';
 import { getArticlesReducers } from './store/reducers/getArticleReducers';
 import { editArticleReducers } from './store/reducers/updateArticleReducers';
+import { CommentsComponent } from './components/comments/comments.component';
+import { CreateCommentEffect } from './store/effects/createComment.effect';
+import { DeleteCommentEffect } from './store/effects/deleteComment.effect';
+import { GetCommentEffect } from './store/effects/getComment.effect';
+import { createCommentReducers } from './store/reducers/createCommentReducers';
+import { getCommentReducers } from './store/reducers/getCommentReducers';
 
 const routes: Routes = [
     {
@@ -40,6 +46,7 @@ const routes: Routes = [
         ArticleComponent,
         CreateArticleComponent,
         EditArticleComponent,
+        CommentsComponent,
     ],
     imports: [
         CommonModule,
@@ -50,17 +57,23 @@ const routes: Routes = [
         StoreModule.forFeature(ReducersEnum.ARTICLE, getArticlesReducers),
         StoreModule.forFeature(ReducersEnum.CREATE_ARTICLE, createArticleReducers),
         StoreModule.forFeature(ReducersEnum.EDIT_ARTICLE, editArticleReducers),
+        StoreModule.forFeature(ReducersEnum.COMMENT, getCommentReducers),
+        StoreModule.forFeature(ReducersEnum.CREATE_COMMENT, createCommentReducers),
         EffectsModule.forFeature([
             GetArticleEffect,
             CreateArticleEffect,
             UpdateArticleEffect,
-            DeleteArticleEffect
+            DeleteArticleEffect,
+            GetCommentEffect,
+            CreateCommentEffect,
+            DeleteCommentEffect,
         ]),
     ],
     exports: [
         ArticleComponent,
         CreateArticleComponent,
         EditArticleComponent,
+        CommentsComponent,
     ],
     providers: [
         ArticleService,

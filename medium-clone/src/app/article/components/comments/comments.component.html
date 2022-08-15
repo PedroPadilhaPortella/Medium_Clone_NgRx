@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8 offset-md-2">
+
+    <mc-loading *ngIf="(isLoading$ | async)"></mc-loading>
+
+
+    <form [formGroup]="form" (ngSubmit)="onSubmitPost()" class="card comment-form ng-untouched ng-pristine ng-valid"
+      novalidate="">
+      <fieldset>
+        <div class="card-block">
+          <textarea class="form-control ng-pristine ng-valid ng-touched" placeholder="Write a comment..." rows="3"
+            formControlName="body"></textarea>
+        </div>
+        <div class="card-footer">
+          <img class="comment-author-img" [src]="(currentUser$ | async).image">
+          <button class="btn btn-sm btn-primary" type="submit" [disabled]="form.invalid">
+            Post Comment
+          </button>
+        </div>
+      </fieldset>
+    </form>
+
+
+
+    <div *ngIf="(comments$ | async)">
+      <div class="card" *ngFor="let comment of (comments$ | async)">
+        <div class="card-block">
+          <p class="card-text">{{ comment.body }}</p>
+        </div>
+        <div class="card-footer">
+          <a [routerLink]="['']" class="comment-author">
+            <img [src]="comment.author.image" class="comment-author-img">
+          </a>
+          &nbsp;
+          <a [routerLink]="['']" class="comment-author">{{ comment.author.username }}</a>
+          <span class="date-posted">{{ comment.createdAt | date:"MMMM dd, YYYY" }}</span>
+          <span class="mod-options" *ngIf="(currentUser$ | async).username == comment.author.username">
+            <i class="ion-trash-a" (click)="removeComment(comment.id)"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
